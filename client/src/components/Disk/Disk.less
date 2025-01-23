@@ -1,0 +1,57 @@
+@import "../../utils/colors";
+
+
+.disk {
+  position: relative;
+  align-self: center;
+  //display: flex;
+
+  &__counter {
+    margin-left: 25px;
+    margin-top: 80px
+  }
+
+  &__input {
+    display: none;
+  }
+
+  &__label-input {
+    margin-left: 150px;
+    padding: 5px 10px;
+    border: 2px dashed teal;
+    cursor: pointer;
+  }
+
+  &__select {
+    position: relative;
+    align-self: flex-end;
+  }
+
+}
+
+.drop-area {
+  //position: relative;
+  display: flex;
+  width: 80%;
+  border: 3px dashed teal;
+  height: calc(100vh - 50px - 40px);
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+}
+
+//.file-enter-active {
+//  animation: diskFile-enter 500ms forwards
+//}
+//@keyframes diskFile-enter {
+//  0% {
+//    opacity: 0;
+//    transform: translateY(-50%)
+//  }
+//  100% {
+//    opacity: 1;
+//    transform: translateY(0)
+//  }
+//
+//}

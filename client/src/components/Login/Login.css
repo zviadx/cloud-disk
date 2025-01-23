@@ -1,0 +1,23 @@
+.login {
+  width: 380px;
+  height: 180px;
+  background-color: #FFFFFF;
+  display: flex;
+  flex-direction: column;
+  border-radius: 15px;
+  margin-top: 100px;
+  align-items: center;
+  justify-content: center;
+}
+.login__mail {
+  position: relative;
+  margin-top: 30px;
+  width: 80%;
+}
+.login__button {
+  margin-top: 10px;
+  align-self: flex-end;
+  margin-right: 64px;
+  height: 33px;
+}
+/*# sourceMappingURL=Login.css.map */

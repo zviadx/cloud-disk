@@ -1,0 +1,58 @@
+@import "../../utils/colors";
+
+
+.fileItem {
+  width: 80%;
+  border-bottom: #566885 solid 3px;
+  margin-left: 150px;
+  padding-top: 20px;
+  align-items: center;
+  align-self: center;
+  //overflow-y: auto;
+
+
+  &__header {
+    display: grid;
+    grid-template-columns:  repeat(10, 1fr);
+    align-items: center;
+    cursor: pointer;
+  }
+
+  &__img {
+    grid-column-start: 1;
+  }
+
+  &__name {
+    grid-column-start: 2;
+  }
+
+  &__type {
+    grid-column-start: 4;
+  }
+
+  &__date {
+    grid-column-start: 5;
+  }
+
+  &__download {
+    font-size: 12px;
+    grid-column-start: 9;
+    display: none;
+  }
+
+  &__recycler {
+    grid-column-start: 10;
+    display: none;
+  }
+
+  &:hover {
+    transform: scale(1.01)
+  }
+
+  &:hover &__download {
+    display: block;
+  }
+  &:hover &__recycler {
+    display: block;
+  }
+}

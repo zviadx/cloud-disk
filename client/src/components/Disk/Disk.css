@@ -1,0 +1,32 @@
+.disk {
+  position: relative;
+  align-self: center;
+}
+.disk__counter {
+  margin-left: 25px;
+  margin-top: 80px;
+}
+.disk__input {
+  display: none;
+}
+.disk__label-input {
+  margin-left: 150px;
+  padding: 5px 10px;
+  border: 2px dashed teal;
+  cursor: pointer;
+}
+.disk__select {
+  position: relative;
+  align-self: flex-end;
+}
+.drop-area {
+  display: flex;
+  width: 80%;
+  border: 3px dashed teal;
+  height: calc(100vh - 50px - 40px);
+  margin: 20px;
+  justify-content: center;
+  align-items: center;
+  font-size: 40px;
+}
+/*# sourceMappingURL=Disk.css.map */
