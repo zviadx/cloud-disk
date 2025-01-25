@@ -12,7 +12,7 @@ export const upFile = (file, dirId) => async (dispatch) => {
         const upFile = {name: file.name, progress: 0, id: Date.now()}
         dispatch(filesStore(upFile))
 
-        await axios.post('http://localhost:5000/api/files/uploader', formData
+        await axios.post('http://localhost:5555/api/files/uploader', formData
             , {
                 headers: {authorization: `Bearer ${localStorage.getItem('token')}`}
 

@@ -1,5 +1,5 @@
-import React from 'react';
 // import fileFolder from '../../assets/img/filefolder.svg'
+import PropTypes from 'prop-types';
 import fileFolder from "../../assets/img/icons8-folder.svg"
 import fail from '../../assets/img/icons8-file.svg'
 import "./FileItem.css"
@@ -12,6 +12,14 @@ import {deleteFile} from "../../tools/deleteFile"
 
 
 const FileItem = ({file}) => {
+    FileItem.propTypes = {
+        file: PropTypes.shape({
+            _id: PropTypes.string.isRequired,
+            type: PropTypes.string.isRequired,
+            path: PropTypes.string.isRequired,
+        }).isRequired,
+    }
+
     const dispatch = useDispatch()
     const curDir = useSelector(state => state.files.currentDir)
     // const stack = useSelector(state => state.files.dirsStack)
@@ -24,7 +32,8 @@ const FileItem = ({file}) => {
     function currDirHandler() {
         dispatch(getDir(file._id))
         dispatch(dirStack(curDir))
-        console.log(curDir)
+        console.log(`მისამართი -- ${curDir}`)
+        // console.log(`ფაილი # ${file._id}`)
     }
 
     return (
@@ -63,6 +72,7 @@ const FileItem = ({file}) => {
             </div>
         </div>
     );
+
 };
 
 export default FileItem;

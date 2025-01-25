@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import  {useState} from 'react';
 import "./Navbar.css"
 import logo from "../../assets/img/navbar-logo.svg"
 import {NavLink} from "react-router-dom";
@@ -71,13 +71,16 @@ const Nav_bar = () => {
                     { authModal && <FolderModal /> }
 
                     <div className="navbar__login"
-                         onClick ={() => { dispatch(getDir(stack.pop())) }}
+                         onClick ={() => {
+                             dispatch(getDir(stack.pop()))
+                             console.log(`მისამართების სტეკი -- ${stack.dirsStack}`)
+                         }}
                     ><NavLink
-                        to="/disk"
-                        className={(isActive) =>
-                            isActive && {backgroundColor: "#3e56af"}
-                        }
-                    >up..</NavLink>
+                        to={`/disk?dir=${currDir}`}
+                        style={({isActive}) => ({
+                            color: isActive ? "red" : "black"
+                        })}
+                    >hup..</NavLink>
                     </div>
 
                     <div
@@ -99,6 +102,7 @@ const Nav_bar = () => {
 
                 </div>
             }
+
         </div>
     );
 };

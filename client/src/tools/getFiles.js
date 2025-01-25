@@ -4,15 +4,15 @@ import {setFile} from "../redux/fileReducer";
 
 export const getFiles = (dirId, sort) => async (dispatch) => {
     try {
-        let url = `http://localhost:5000/api/files`
+        let url = `http://localhost:5555/api/files`
         if (dirId) {
-            url = `http://localhost:5000/api/files?parent=${dirId}`
+            url = `http://localhost:5555/api/files?parent=${dirId}`
         }
         if (sort) {
-            url = `http://localhost:5000/api/files?sort=${sort}`
+            url = `http://localhost:5555/api/files?sort=${sort}`
         }
         if (dirId && sort) {
-            url = `http://localhost:5000/api/files?parent=${dirId}&sort=${sort}`
+            url = `http://localhost:5555/api/files?parent=${dirId}&sort=${sort}`
         }
 
         await axios.get(url, {

@@ -1,7 +1,7 @@
 {
-  "serverPort": 5000,
+  "serverPort": 5555,
   "dbUrl": "mongodb+srv://zviadx:Maisi1977@cluster0.u5yue.mongodb.net/test?retryWrites=true&w=majority",
   "secretKey": "საიდუმლო საკეტი",
-  "filePath": "D:\\React FrontEnd and FullStack prs\\file-server\\server\\fileStore",
-  "staticPath": "D:\\React FrontEnd and FullStack prs\\file-server\\server\\static"
+  "filePath": "E:\\REACT\\cloud-disk\\server\\fileStore",
+  "staticPath": "E:\\REACT\\cloud-disk\\server\\static"
 }

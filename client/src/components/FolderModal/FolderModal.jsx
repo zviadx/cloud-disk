@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import  {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import "./FolderModal.css";
 import {createFolder} from "../../tools/createFolder";
@@ -12,14 +12,19 @@ const FolderModal = () => {
     const authModal = useSelector(state => state.files.modal)
     const dispatch = useDispatch()
 
-    function keyPressHandler(event) {
+    async function keyPressHandler(event) {
         if (event.key === "Enter") {
-            dispatch(createFolder(inputValue, currentFolderId))
+            await dispatch(createFolder(inputValue, currentFolderId))
             setInputValue("")
             dispatch(setModal(false))
         }
     }
 
+    async function clickHandler() {
+        await dispatch(createFolder(inputValue, currentFolderId))
+        setInputValue("")
+        // dispatch(setModal(false))
+    }
 
     return (
     <div
@@ -39,7 +44,7 @@ const FolderModal = () => {
                 type="text"
                 value = {inputValue}
                 onChange={event => setInputValue(event.target.value)}
-                onKeyPress = {(event) => keyPressHandler(event)}
+                onKeyDown = {(event) => keyPressHandler(event)}
 
             />
 
@@ -54,10 +59,9 @@ const FolderModal = () => {
                     className="modal__button"
                         onClick={event => {
                             event.stopPropagation()
-                            dispatch(createFolder(inputValue, currentFolderId))
-                            setInputValue("")
-                            dispatch(setModal(false))
-                            console.log("ყვერებოოო!!!!!!!!!")
+                            clickHandler().then(() => {
+                                dispatch(setModal(false))
+                            })
                         }}
                 >
                     accept

@@ -1,4 +1,4 @@
-import React from 'react';
+
 import Login from "./Login/Login";
 import Registration from "./Registration/Registration";
 import FileCreate from "./FileCreate/FileCreate"
@@ -18,7 +18,7 @@ const App = () => {
 
 
     return (
-        <BrowserRouter>
+        <BrowserRouter >
             <div className="app">
                 <Nav_bar />
 
@@ -27,6 +27,7 @@ const App = () => {
                     <Routes>
                         <Route path="/file-create"  element={<FileCreate />}/>
                         <Route path="/disk" element={<Disk />} />
+                        <Route path="/disk/:id" element={<Disk />} />
                         <Route path="/Profile" element={<Profile />} />
                         <Route path="/createFolder" element={<FolderModal />} />
                         <Route path="/newNavbar" element={<NewNavbar />} />

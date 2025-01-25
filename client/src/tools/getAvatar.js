@@ -7,7 +7,7 @@ export const getAvatar = (file) => async (dispatch) => {
     try {
         const formData = new FormData()
         formData.append("file", file)
-        await axios.post(`http://localhost:5000/api/files/upAvatar`, formData, {
+        await axios.post(`http://localhost:5555/api/files/upAvatar`, formData, {
             headers: {authorization: `Bearer ${localStorage.getItem('token')}`}
         })
             .then(response => {

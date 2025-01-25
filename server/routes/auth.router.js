@@ -19,7 +19,7 @@ router.post('/registration',
     try {
         const validationError = validationResult(req)
         if (!validationError.isEmpty()) {
-            return res.status(400).json({errors: errors.array()})
+            return res.status(400).json({errors: this.errors.array()})
         }
         const {email, password} = req.body
         const isUser = await User.findOne({email})

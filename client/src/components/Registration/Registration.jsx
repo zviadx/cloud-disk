@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import  {useState} from 'react';
 import Input from "../Input/Input";
 import {Button} from "react-bootstrap";
 // import {getCurrUser} from "../../tools/login";
@@ -10,8 +10,12 @@ import {useDispatch} from "react-redux"
 
 const Registration = () => {
     const dispatch = useDispatch();
-    const [email, setEmail] = useState("")``
+    const [email, setEmail] = useState("")
     const [password, setPassword] = useState("")
+
+    const clickHandler = async () => {
+        await dispatch(setUser(email, password))
+    }
 
     return (
         <div className="login">
@@ -36,10 +40,8 @@ const Registration = () => {
                 className="login__button"
                 variant='primary'
                 onClick ={() => {
-                    dispatch(setUser(email, password))
-
-                  }
-                }
+                    clickHandler().then(() => { console.log("User registered")})
+                } }
             >REGISTRATION
             </Button>
 

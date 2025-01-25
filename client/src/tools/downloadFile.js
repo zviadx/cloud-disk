@@ -3,7 +3,7 @@
 
 export const getDownloadFile = (file) => async (dispatch) => {
     try {
-        const response = await fetch(`http://localhost:5000/api/files/download?file=${file._id}`, {
+        const response = await fetch(`http://localhost:5555/api/files/download?file=${file._id}`, {
             headers: {authorization: `Bearer ${localStorage.getItem('token')}`}
         })
                 if (response.status === 200) {

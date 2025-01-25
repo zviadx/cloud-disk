@@ -4,7 +4,7 @@ import {getFiles} from "./getFiles";
 
 export const createFolder = (folder, parentFolderId) => async(dispatch) => {
     try {
-        await axios.post('http://localhost:5000/api/files/createFolder',
+        await axios.post('http://localhost:5555/api/files/createFolder',
             {folder: folder, parentFolderId: parentFolderId},
             {headers: {authorization: `Bearer ${localStorage.getItem('token')}`}})
             .then(res => {

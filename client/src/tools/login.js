@@ -4,7 +4,7 @@ import {getUser} from "../redux/userReducer"
 
 export const getCurrUser = (email, password) => async(dispatch) => {
     try {
-        await axios.post('http://localhost:5000/api/auth/login', {email, password})
+        await axios.post('http://localhost:5555/api/auth/login', {email, password})
             .then (response => {
                 if (response.status !== 200) {
                     throw new Error( "There is some problems with LogIn" )
