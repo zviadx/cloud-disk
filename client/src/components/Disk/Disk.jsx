@@ -1,9 +1,8 @@
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {useEffect} from 'react'
 import {useSelector, useDispatch} from 'react-redux'
 import FileItem from "../FileItem/FileItem.jsx"
 import Uploader from "../Uploader/Uploader";
-import "./Disk.css"
 import {getFiles} from "../../tools/getFiles"
 // import { Link, animateScroll as scroll } from "react-scroll";
 import {upFile} from "../../tools/uploadFile"
@@ -19,12 +18,6 @@ const Disk = () => {
     const [sort, setSort] = useState('')
 
 
-    // const ffiles = [
-    //     {_id:1, name:"rufus-3.5.exe", type:"exe", size:1052728, path:"rufus-3.5.exe", date: "2022-07-21", user: "6288e63193c65de122c248bc"},
-    //     {_id:2, name:"A1", type:"dir", size:0, path:"A1", date: "2022-07-22", user: "6288e63193c65de122c248bc", parent:null}
-    // ]
-
-
     useEffect( () => {
         async function fetchData() {
             await dispatch(getFiles(files.currentDir, sort))
@@ -35,23 +28,12 @@ const Disk = () => {
     function NotAuthenticated() {
         if (!isAuth) {
             return (
-                <div className="disk__counter">
+                <div className="ml-6 mt-20">
                     <h1>You are not authenticated</h1>
                 </div>
             );
         }
     }
-
-
-    // const checkLength = () => {
-    //     if (!files.files.length) {
-    //         return (
-    //             <div>
-    //                 <h1>There are no any files</h1>
-    //             </div>
-    //         )
-    //     }
-    // }
 
     function failUpload(event) {
         const upFiles = [...event.target.files]
@@ -85,7 +67,7 @@ try {
     return (
         !dragEnter
             ?
-            <div className="disk"
+            <div className="relative self-center"
                  onDragEnter={onDragEnterHandler}
                  onDragLeave={onDragLeaveHandler}
                  onDragOver={onDragEnterHandler}
@@ -93,17 +75,17 @@ try {
 
                 {NotAuthenticated()}
 
-                <label htmlFor="fileUpload" className="disk__label-input"
+                <label htmlFor="fileUpload" className="ml-[150px] px-[10px] py-[5px] border-2 border-dashed border-teal-500 cursor-pointer"
                        onClick={() => dispatch(makeVisible(true))}
-                > აირჩიეთ ფაილ(ებ)ი </label>
+                > Choose file </label>
 
-                <input type="file" multiple={true} id="fileUpload" className="disk__input"
+                <input type="file" multiple={true} id="fileUpload" className="hidden"
                        onChange={(event) => failUpload(event)}
                 />
 
 
                 <select
-                    className="disk__select"
+                    className="relative self-end"
                     value={sort}
                     onChange={(e) => setSort(e.target.value)}
                 >
@@ -113,12 +95,11 @@ try {
                 </select>
 
                 {files.files.map(file => <FileItem key={file._id} file={file}/>)}
-                {/*{ffiles.map(file => <FileItem key={file._id} file={file} /> )}*/}
                 <Uploader/>
             </div>
 
             :
-            <div className="drop-area"
+            <div className="flex w-4/5 border-[3px] border-dashed border-teal-500 h-[calc(100vh-90px)] m-5 justify-center items-center text-[40px]"
                 // onDragEnter={onDragEnterHandler}
                  onDragLeave={onDragLeaveHandler}
                  onDragOver={onDragEnterHandler}

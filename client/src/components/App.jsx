@@ -3,7 +3,6 @@ import Login from "./Login/Login";
 import Registration from "./Registration/Registration";
 import FileCreate from "./FileCreate/FileCreate"
 import FolderModal from "./FolderModal/FolderModal";
-import "./App.css";
 import Nav_bar from "./Navbar/Navbar";
 import NewNavbar from "./NewNavbar/NewNavbar";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
@@ -15,7 +14,6 @@ import {Navigate} from "react-router";
 
 const App = () => {
     const isAuth = useSelector(state => state.user.isAuth);
-
 
     return (
         <BrowserRouter >

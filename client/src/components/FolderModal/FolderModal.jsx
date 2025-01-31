@@ -1,6 +1,5 @@
 import  {useState} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import "./FolderModal.css";
 import {createFolder} from "../../tools/createFolder";
 import {setModal} from "../../redux/fileReducer";
 // import {Navigate} from "react-router";
@@ -31,15 +30,20 @@ const FolderModal = () => {
         onClick={() => {
             dispatch(setModal(false))
         }}
-        className={authModal ? "modal" : "modal__close"}
+        className={
+            authModal
+                ? "fixed top-0 left-0 w-screen h-[calc(100vh+200px)] bg-black/50 flex items-center justify-center"
+                : "hidden"
+            }
     >
 
         <div
-            className="modal__container"
+            className="w-[400px] h-[150px] bg-white rounded-[15px] flex flex-col items-center justify-center"
             onClick={event => event.stopPropagation()}
         >
             <input
-                className="modal__input"
+                // className="w-[300px] h-[30px] border-0 border-b-[3px] border-b-[#566885] outline-none p-[5px]"
+                className="relative w-[200px] left-[100px] top-[50px] border-0 border-b-[3px] border-b-teal-500 outline-none"
                 placeholder="Enter Folder Name"
                 type="text"
                 value = {inputValue}
@@ -47,16 +51,9 @@ const FolderModal = () => {
                 onKeyDown = {(event) => keyPressHandler(event)}
 
             />
-
-            {/*<NavLink*/}
-            {/*    to="/disk"*/}
-            {/*    className={(isActive) => {*/}
-            {/*        isActive ? console.log("YES") : console.log("no no no no no")*/}
-            {/*    }*/}
-            {/*    }*/}
-            {/*>*/}
                 <button
-                    className="modal__button"
+                    // className="w-[100px] h-[30px] mt-[10px] bg-[#4b78ea] text-white rounded-[5px] cursor-pointer"
+                    className="w-[60px] relative left-[100px] top-[70px] rounded-[5px] border-2 border-teal-500"
                         onClick={event => {
                             event.stopPropagation()
                             clickHandler().then(() => {
@@ -66,8 +63,6 @@ const FolderModal = () => {
                 >
                     accept
                 </button>
-            {/*</NavLink>*/}
-
 
         </div>
 

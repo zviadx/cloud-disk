@@ -1,8 +1,7 @@
-import React, {useState} from 'react';
+import  {useState} from 'react';
 import {useDispatch} from "react-redux";
 import Input from "../Input/Input";
 import {Button} from "react-bootstrap";
-import "./FileCreate.less";
 import {postFile} from "../../tools/postFile";
 import {getDir} from "../../redux/fileReducer";
 
@@ -15,10 +14,10 @@ const FileCreate = () => {
     // const dirId = useSelector(state => state.files.currentDir)
 
     return (
-        <div className="login">
+        <div className="w-[380px] h-[180px] bg-[#E9E6E6] flex flex-col rounded-[15px] mt-[100px] items-center justify-center">
 
             <Input
-                className="fileCreate__mail"
+                className="relative mt-8 w-4/5"
                 type="text"
                 placeholder="Enter Name"
                 setMail={setName}
@@ -26,7 +25,7 @@ const FileCreate = () => {
             />
 
             <Input
-                className="fileCreate__mail"
+                className="relative mt-8 w-4/5"
                 type="text"
                 placeholder="Enter Password"
                 setMail={setType}
@@ -35,7 +34,7 @@ const FileCreate = () => {
             />
 
             <Input
-                className="fileCreate__mail"
+                className="relative mt-8 w-4/5"
                 type="text"
                 placeholder="Enter Parent Folder"
                 setMail={setParent}
@@ -43,11 +42,11 @@ const FileCreate = () => {
             />
 
             <Button
-                className="login__button"
+                className="mt-2.5 self-end mr-16 h-[33px]"
                 variant='warning'
                 onClick ={() => {
                     parent && dispatch(getDir(parent))
-                    dispatch(postFile(name, type, parent))
+                    dispatch(postFile(name, type, parent)).then(r => console.log(r))
                     setName("")
                     setType("")
                     setParent("")

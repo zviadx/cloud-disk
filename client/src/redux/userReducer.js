@@ -1,6 +1,6 @@
 const initialState = {
     currentUser: {},
-    isAuth: true
+    isAuth: false
 }
 
 const SET_USER = "SET_USER"
