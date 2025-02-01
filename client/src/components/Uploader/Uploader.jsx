@@ -2,11 +2,13 @@ import {useSelector, useDispatch} from "react-redux"
 import {makeVisible} from "../../redux/uploadReducer";
 import UpFile from "../UpFile/UpFile";
 import {CSSTransition, TransitionGroup} from "react-transition-group";
+import {useRef} from "react";
 
 const Uploader = () => {
     const isVisible = useSelector(state => state.upload.isVisible)
     const upFiles = useSelector(state => state.upload.files)
     const dispatch = useDispatch()
+    const nodeRef = useRef(null)
 
     return (
         isVisible
@@ -24,11 +26,15 @@ const Uploader = () => {
                 {upFiles.map(upFile =>
                     <CSSTransition
                         key={upFile.id}
+                        nodeRef={nodeRef}
                         timeout={500}
-                        classNames={'file'}
-                        exit={false}
+                        classNames="file"
+                        unmountOnExit
                     >
-                        <UpFile file={upFile}/>
+                        <div ref={nodeRef}>
+                            <UpFile file={upFile}/>
+                        </div>
+                        {/*<UpFile file={upFile}/>*/}
                     </CSSTransition>
                 )}
             </TransitionGroup>

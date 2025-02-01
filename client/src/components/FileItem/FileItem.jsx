@@ -7,6 +7,7 @@ import recycle from "../../assets/img/Recycle_Bin.svg"
 import download from "../../assets/img/download.svg"
 import {getDownloadFile} from "../../tools/downloadFile"
 import {deleteFile} from "../../tools/deleteFile"
+import "./FileItem.css"
 
 const FileItem = ({file}) => {
     FileItem.propTypes = {
@@ -32,11 +33,9 @@ const FileItem = ({file}) => {
     }
 
     return (
-        <div className="w-4/5 border-b-[3px] border-b-[#566885] ml-[150px]
-        pt-5 items-center self-center hover:scale-[1.01]
-        shadow-md hover:shadow-lg transition-shadow duration-200 rounded-lg bg-white">
+        <div className="fileItem">
             <div
-                className="grid grid-cols-10 items-center cursor-pointer"
+                className="fileItem__header"
                 onClick={() => {
                     if (file.type === "dir") {
                         currDirHandler()
@@ -45,12 +44,12 @@ const FileItem = ({file}) => {
                     }
                 }}
             >
-                <img src={file.type === "dir" ? `${fileFolder}` : `${fail}`} alt="" className="col-start-1"/>
-                <div className="col-start-2">{file.path}</div>
+                <img src={file.type === "dir" ? `${fileFolder}` : `${fail}`} alt="" className="fileItem__img"/>
+                <div className="fileItem__name">{file.path}</div>
                 <img
                     src={download}
                     alt=""
-                    className="text-xs col-start-9 hidden group-hover:block"
+                    className="fileItem__download"
                     onClick={(e) => {
                         stopBrowserDefault(e)
                         if (file.type !== "dir") {
@@ -63,10 +62,11 @@ const FileItem = ({file}) => {
                 <img
                     src={`${recycle}`}
                     alt=""
-                    className="col-start-10 hidden group-hover:block"
-                    onClick={(e) => {
+                    className="fileItem__recycler"
+                    onClick={async (e) => {
                         stopBrowserDefault(e)
-                        dispatch(deleteFile(file)).then(r => console.log(r))
+                        console.log(`ფაილის იდე -- ${file._id}`)
+                        await dispatch(deleteFile(file))
                     }}
                 />
             </div>

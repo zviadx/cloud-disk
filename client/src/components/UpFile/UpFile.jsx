@@ -34,7 +34,10 @@ UpFile.propTypes = {
     file: PropTypes.shape({
         name: PropTypes.string.isRequired,
         progress: PropTypes.number.isRequired,
-        id: PropTypes.string
+        id: PropTypes.oneOfType([
+            PropTypes.string,
+            PropTypes.number
+        ]).isRequired,
     }).isRequired,
 };
 

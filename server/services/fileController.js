@@ -87,7 +87,7 @@ class fileController {
             // console.log(user._id)
 
             if (user.usedSpace + file.size > user.diskSpace) {
-                return res.status(400).json({message1: "There is't enough space for file saving "})
+                return res.status(400).json({message1: "There isn't enough space for file saving "})
             }
 
             user.usedSpace = user.usedSpace + file.size
@@ -145,13 +145,15 @@ class fileController {
 
     async failDelete(req, res) {
         try {
+
             const file = await File.findOne({user: req.user.id, _id: req.query.id})
+            console.log("ფაილი ბაზაში -- " + file)
             if (!file) {
                 return res.status(400).json({message: 'File does not exist '})
             }
-
             fileServices.fileDeleter(file)
-            await file.remove()
+            // await file.remove()
+            await File.findOneAndDelete({ _id: file._id }, { lean: true })
             res.status(200).json({message: 'File successfully deleted'})
 
         } catch (err) {

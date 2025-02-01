@@ -7,6 +7,7 @@ import {getFiles} from "../../tools/getFiles"
 // import { Link, animateScroll as scroll } from "react-scroll";
 import {upFile} from "../../tools/uploadFile"
 import {makeVisible} from "../../redux/uploadReducer";
+import File from '../../assets/img/icons8-file.svg'
 
 
 
@@ -75,17 +76,21 @@ try {
 
                 {NotAuthenticated()}
 
-                <label htmlFor="fileUpload" className="ml-[150px] px-[10px] py-[5px] border-2 border-dashed border-teal-500 cursor-pointer"
-                       onClick={() => dispatch(makeVisible(true))}
-                > Choose file </label>
-
+                <div className="flex flex-row">
+                <label htmlFor="fileUpload" className="ml-[50px] px-[10px] py-[5px] cursor-pointer">
+                    {
+                        <img
+                            src={File} alt=""
+                            onClick={() => dispatch(makeVisible(true))}
+                        />
+                    }
+                </label>
                 <input type="file" multiple={true} id="fileUpload" className="hidden"
                        onChange={(event) => failUpload(event)}
                 />
 
-
                 <select
-                    className="relative self-end"
+                    className="relative self-end top-[-16px]"
                     value={sort}
                     onChange={(e) => setSort(e.target.value)}
                 >
@@ -93,18 +98,20 @@ try {
                     <option value='type'>on Type</option>
                     <option value='size'>on Size</option>
                 </select>
+                </div>
 
                 {files.files.map(file => <FileItem key={file._id} file={file}/>)}
                 <Uploader/>
             </div>
 
             :
-            <div className="flex w-4/5 border-[3px] border-dashed border-teal-500 h-[calc(100vh-90px)] m-5 justify-center items-center text-[40px]"
+            <div
+                className="flex w-4/5 border-[3px] border-dashed border-teal-500 h-[calc(100vh-90px)] m-5 justify-center items-center text-[40px]"
                 // onDragEnter={onDragEnterHandler}
-                 onDragLeave={onDragLeaveHandler}
-                 onDragOver={onDragEnterHandler}
+                onDragLeave={onDragLeaveHandler}
+                onDragOver={onDragEnterHandler}
 
-                 onDrop={onDropHandler}
+                onDrop={onDropHandler}
             >
                 Get files here
             </div>

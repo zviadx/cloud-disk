@@ -10,6 +10,7 @@ class fileServices {
 
     fileDeleter(file) {
         const path = this.getPath(file)
+        console.log("Path: ", path)
         if (file.type === "dir") {
             fs.rmdirSync(path)
         } else {
