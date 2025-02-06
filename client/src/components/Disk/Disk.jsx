@@ -1,14 +1,11 @@
-import {useState} from 'react';
-import {useEffect} from 'react'
-import {useSelector, useDispatch} from 'react-redux'
+import {useEffect, useState} from 'react';
+import {useDispatch, useSelector} from 'react-redux'
 import FileItem from "../FileItem/FileItem.jsx"
 import Uploader from "../Uploader/Uploader";
 import {getFiles} from "../../tools/getFiles"
-// import { Link, animateScroll as scroll } from "react-scroll";
 import {upFile} from "../../tools/uploadFile"
 import {makeVisible} from "../../redux/uploadReducer";
-import File from '../../assets/img/icons8-file.svg'
-
+import File from '../../assets/img/icons8-opened-folder.svg'
 
 
 const Disk = () => {
@@ -92,7 +89,9 @@ try {
                 <select
                     className="relative self-end top-[-16px]"
                     value={sort}
-                    onChange={(e) => setSort(e.target.value)}
+                    onChange={(e) =>
+                        setSort(e.target.value)
+                    }
                 >
                     <option value='name'>on Name</option>
                     <option value='type'>on Type</option>

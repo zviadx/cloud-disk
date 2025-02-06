@@ -147,7 +147,6 @@ class fileController {
         try {
 
             const file = await File.findOne({user: req.user.id, _id: req.query.id})
-            console.log("ფაილი ბაზაში -- " + file)
             if (!file) {
                 return res.status(400).json({message: 'File does not exist '})
             }

@@ -1,4 +1,4 @@
-import  {useState} from 'react';
+import {useCallback, useState} from 'react';
 
 import logo from "../../assets/img/navbar-logo.svg"
 import {NavLink} from "react-router-dom";
@@ -11,11 +11,14 @@ import UpArrow from "../../assets/img/up-arrow.svg"
 import Folder from "../../assets/img/folder.svg"
 import {SERVER_URL} from "../../config";
 import FolderModal from "../FolderModal/FolderModal";
+import {useDebounce} from "../../hooks/useDebounce.js";
+import Dropdown from "../Dropdown/Dropdown.jsx";
+import LogOut from "../../assets/img/logoutcol.svg"
+import SelectIcon from "../../assets/img/selectcol.svg"
 
-// NAVBAR DESIGN
 
 
-const Nav_bar = () => {
+const Navbar = () => {
     const isAuth = useSelector(state => state.user.isAuth)
     const stack = useSelector(state => state.files.dirsStack)
     const currDir = useSelector(state => state.files.currentDir)
@@ -23,20 +26,40 @@ const Nav_bar = () => {
     const dispatch = useDispatch()
     const [doSearch, setDoSearch] = useState('')
     const authModal = useSelector(state => state.files.modal)
-
-    const setSearchTimeout = (event) => {
-        if (doSearch) {
-            clearTimeout(doSearch)
+    const dropdownItems = [
+        {
+            text: "Choose Avatar",
+            icon: SelectIcon,
+            link: "/Profile",
+            onClick: () => console.log("Option Avatar clicked")
+        },
+        {
+            text: "Sign Out",
+            icon: LogOut,
+            link: undefined,
+            onClick: () => {
+                dispatch(logOut())
+                localStorage.removeItem("token")
+            }
         }
-        // setTimeout(() => {
-            setDoSearch(event.target.value)
-            dispatch(searchFile(event.target.value)).then(r => console.log(r))
-        // }, 1000)
+    ];
+
+    const search = (value) => {
+        dispatch(searchFile(value))
     }
 
+    const DebouncedSearch = useDebounce( search, 2000)
+
+
+
+    const setSearchTimeout = useCallback((e) => {
+        const value = e.target.value
+        setDoSearch(value)
+        DebouncedSearch(value)
+    },[DebouncedSearch])
 
     return (
-        <div className="w-full h-[50px] bg-white flex items-center justify-between px-5 py-0 border-b-[3px] border-b-[blue] border-solid;">
+        <div className="w-full h-[50px] flex items-center justify-between px-5 py-0 border-b-[3px] border-b-[blue] border-solid;">
             <div className="flex items-center;">
                 <img src={logo} alt="" className="mr-[15px]"/>
                 <div className="text-2xl font-bold">MERN CLOUD</div>
@@ -59,9 +82,7 @@ const Nav_bar = () => {
                     </svg>
                     <input
                         className="ml-4 pl-1 w-full h-full focus:outline-0"
-                        onChange={(event) => {
-                            setSearchTimeout(event)
-                        }}
+                        onChange={setSearchTimeout}
                         value={doSearch}
                     />
                 </div>
@@ -78,10 +99,10 @@ const Nav_bar = () => {
                 :
                 <div className="flex items-center gap-4">
 
+
                     <img src={Folder} alt=""
                          className="w-[45px] h-[35px] rounded-lg bg-white cursor-pointer active:translate-x-[1px] active:translate-y-[1px]"
                          onClick={() => {
-                             console.log(currDir)
                              dispatch(setModal(true))
                          }}
                     />
@@ -98,27 +119,20 @@ const Nav_bar = () => {
                             src={`${UpArrow}`} alt=""
                             onClick={() => {
                                 dispatch(getDir(stack.pop()))
-                                console.log(`მისამართების სტეკი -- ${stack.dirsStack}`)
                             }}
                         />
                     </NavLink>
 
-                    <div
-                        className="mr-4"
-                        onClick={() => {
-                            dispatch(logOut())
-                            localStorage.removeItem("token")
-                        }}
-                    >
-                        <NavLink to="/Exit">SIGN OUT</NavLink>
-                    </div>
+                    <Dropdown
+                        trigger={
+                            <img
+                                src={currUser.avatar ? `${SERVER_URL + "fail.svg"}` : `${Avatar}`} alt=""
+                                className="w-10 h-10 rounded-lg bg-white cursor-pointer ml-[1px] mr-20"
+                            />
+                        }
+                        items={dropdownItems}
+                    />
 
-                    <NavLink to="/Profile">
-                        <img
-                            src={currUser.avatar ? `${SERVER_URL + "fail.svg"}` : `${Avatar}`} alt=""
-                            className="w-10 h-10 rounded-lg bg-white cursor-pointer ml-[1px]"
-                        />
-                    </NavLink>
 
                 </div>
             }
@@ -127,4 +141,4 @@ const Nav_bar = () => {
     );
 };
 
-export default Nav_bar;
+export default Navbar;

@@ -3,7 +3,7 @@ import Login from "./Login/Login";
 import Registration from "./Registration/Registration";
 import FileCreate from "./FileCreate/FileCreate"
 import FolderModal from "./FolderModal/FolderModal";
-import Nav_bar from "./Navbar/Navbar";
+import Navbar from "./Navbar/Navbar";
 import NewNavbar from "./NewNavbar/NewNavbar";
 import {BrowserRouter, Route, Routes} from 'react-router-dom';
 import {useSelector} from "react-redux";
@@ -17,9 +17,11 @@ const App = () => {
 
     return (
         <BrowserRouter >
-            <div className="app">
-                <Nav_bar />
-
+            <div className="">
+                <div className="fixed top-0 left-0 right-0 mb-9 z-10 bg-white/50">
+                    <Navbar />
+                </div>
+            <div className="mt-20">
                 {isAuth
                     ?
                     <Routes>
@@ -39,7 +41,7 @@ const App = () => {
                         <Route path="*" element={<Navigate to={`/login`} /> } />
                     </Routes>
                 }
-
+            </div>
             </div>
 
 

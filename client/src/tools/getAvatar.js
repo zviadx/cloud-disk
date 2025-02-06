@@ -11,7 +11,7 @@ export const getAvatar = (file) => async (dispatch) => {
             headers: {authorization: `Bearer ${localStorage.getItem('token')}`}
         })
             .then(response => {
-                console.log(response.data);
+                // console.log(response.data);
                 dispatch(getUser(response.data))})
     } catch (err) {
         console.error(err)

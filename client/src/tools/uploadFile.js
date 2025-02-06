@@ -18,10 +18,10 @@ export const upFile = (file, dirId) => async (dispatch) => {
 
                 , onUploadProgress: progressEvent => {
                     const totalLength = progressEvent.lengthComputable ? progressEvent.total : progressEvent.target.getResponseHeader('content-length') || progressEvent.target.getResponseHeader('x-decompressed-content-length');
-                    console.log('total', totalLength)
+                    // console.log('total', totalLength)
                     if (totalLength) {
                         upFile.progress = Math.round((progressEvent.loaded * 100) / totalLength)
-                        console.log(`Is ${upFile.progress}`)
+                        // console.log(`Is ${upFile.progress}`)
                         dispatch(changeProgress(upFile))
 
                     }

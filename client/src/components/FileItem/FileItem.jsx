@@ -29,7 +29,7 @@ const FileItem = ({file}) => {
     function currDirHandler() {
         dispatch(getDir(file._id))
         dispatch(dirStack(curDir))
-        console.log(`მისამართი -- ${curDir}`)
+        // console.log(`მისამართი -- ${curDir}`)
     }
 
     return (
@@ -65,7 +65,7 @@ const FileItem = ({file}) => {
                     className="fileItem__recycler"
                     onClick={async (e) => {
                         stopBrowserDefault(e)
-                        console.log(`ფაილის იდე -- ${file._id}`)
+                        // console.log(`ფაილის იდე -- ${file._id}`)
                         await dispatch(deleteFile(file))
                     }}
                 />
