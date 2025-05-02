@@ -4,8 +4,6 @@ import FileItem from "../FileItem/FileItem.jsx"
 import Uploader from "../Uploader/Uploader";
 import {getFiles} from "../../tools/getFiles"
 import {upFile} from "../../tools/uploadFile"
-import {makeVisible} from "../../redux/uploadReducer";
-import File from '../../assets/img/icons8-opened-folder.svg'
 
 
 const Disk = () => {
@@ -31,11 +29,6 @@ const Disk = () => {
                 </div>
             );
         }
-    }
-
-    function failUpload(event) {
-        const upFiles = [...event.target.files]
-        upFiles.forEach((file) => dispatch(upFile(file, files.currentDir)))
     }
 
 
@@ -74,20 +67,9 @@ try {
                 {NotAuthenticated()}
 
                 <div className="flex flex-row">
-                <label htmlFor="fileUpload" className="ml-[50px] px-[10px] py-[5px] cursor-pointer">
-                    {
-                        <img
-                            src={File} alt=""
-                            onClick={() => dispatch(makeVisible(true))}
-                        />
-                    }
-                </label>
-                <input type="file" multiple={true} id="fileUpload" className="hidden"
-                       onChange={(event) => failUpload(event)}
-                />
 
                 <select
-                    className="relative self-end top-[-16px]"
+                    className="relative self-end top-[-16px] ml-5 border-[2px] border-solid border-black rounded-md p-1"
                     value={sort}
                     onChange={(e) =>
                         setSort(e.target.value)

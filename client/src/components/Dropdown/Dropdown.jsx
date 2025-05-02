@@ -56,7 +56,7 @@ const Dropdown = ({ trigger, items }) => {
                                 setIsOpen(false);
                             }}
                         >
-                            {item.icon && <img src={item.icon} alt={item.text} className="w-5 h-5 mr-2"/>}
+                            {item.icon && <img src={item.icon} alt={item.text} className="mr-2"/>}
                             <NavLink className={"no-underline text-black"} to={item.link}>
                                 {item.text}
                             </NavLink>
